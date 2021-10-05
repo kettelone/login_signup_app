@@ -1,6 +1,6 @@
 import {ME} from "./types"
 
-const initialState = { message: "Loading data, please wait..."}
+const initialState = { message: "Loading..."}
 
 const meReducer = (state = initialState, action) => {
     switch(action.type){
