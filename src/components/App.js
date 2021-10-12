@@ -3,7 +3,7 @@ import Login  from "./login";
 import SignUp  from  "./sign_up"
 import Me from "./me"
 
-function App() {
+ const App = () => {
   
   return (
     <div>
@@ -18,4 +18,4 @@ function App() {
   );
 }
 
-export default App;
+ export default App;
