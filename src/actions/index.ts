@@ -11,8 +11,6 @@ interface AuthResponse{
     code: number;
     message: string;
     status: string;  
-  
- 
 }
 
 const handleSignUp = async (email:string, password:string) => {
