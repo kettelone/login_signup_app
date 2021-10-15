@@ -2,40 +2,53 @@
 import axios from 'axios';
 import { $api, rootURL } from '../api/http';
 
+interface AuthResponse{
+    body:{
+      access_token: string;
+      refresh_token: string;
+    }
+    statusCode: number;
+    code: number;
+    message: string;
+    status: string;  
+  
+ 
+}
 
 const handleSignUp = async (email:string, password:string) => {
-  let data = {};
-  await $api.post('/sign_up', {
+  let signUpResponse
+  await $api.post<AuthResponse>('/sign_up', {
     email,
     password,
   }).then((response) => {
-    data = response;
+    signUpResponse = response;
     console.log(response);
   });
-  return data;
+  return signUpResponse;
 };
 
 const handleLogin = async (email:string, password:string) => {
-  let data = {};
-  await $api.post(
+  let loginResponse
+  await $api.post<AuthResponse>(
     `/login?email=${email}&password=${password}`,
   ).then((response) => {
+    console.log(response)
     if (response.data.status === 'error') {
       console.log(response.data.message);
     } else {
       localStorage.setItem('accessToken', response.data.body.access_token);
       localStorage.setItem('refreshToken', response.data.body.refresh_token);
     }
-    data = response;
+    loginResponse = response;
   });
-  return data;
+  return loginResponse;
 };
 
 const getMe = async (accessToken:string |null, refreshToken:string | null) => {
-  let data = {}
+  let responseData = {}
   $api.interceptors.response.use((response) => {
     if (response.data.statusCode === 200) {
-      data = response;
+      responseData = response;
     } else {
       console.log("STATUS CODE IS NOT 200");
       axios({
@@ -53,15 +66,15 @@ const getMe = async (accessToken:string |null, refreshToken:string | null) => {
           },
         });
       });
-      data = response;
+      responseData = response;
     }
   })
-  await $api.get(`${rootURL}/me`, {
+  await $api.get<AuthResponse>(`${rootURL}/me`, {
       headers:{
           Authorization: `Bearer ${accessToken}`
       }
   })
-  return data
+  return responseData
 }
 
 export { handleSignUp, handleLogin, getMe };
