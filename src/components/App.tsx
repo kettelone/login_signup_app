@@ -4,7 +4,7 @@ import Login  from "./login";
 import SignUp  from  "./sign_up";
 import Me from "./me"
 
- const App = () => (
+ const App: React.FC = () => (
     <div>
         <BrowserRouter>
         <div id="container">
