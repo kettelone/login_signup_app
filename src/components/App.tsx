@@ -1,11 +1,10 @@
+import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Login  from "./login";
-import SignUp  from  "./sign_up"
+import SignUp  from  "./sign_up";
 import Me from "./me"
 
- const App = () => {
-  
-  return (
+ const App = () => (
     <div>
         <BrowserRouter>
         <div id="container">
@@ -15,7 +14,6 @@ import Me from "./me"
        </div>
         </ BrowserRouter >
     </div>
-  );
-}
+  )
 
  export default App;

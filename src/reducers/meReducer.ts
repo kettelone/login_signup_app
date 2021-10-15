@@ -1,8 +1,11 @@
-import {ME} from "./types"
+import {ME, MeAction, MeState} from "./types"
 
-const initialState = { message: "Loading..."}
+const initialState = { 
+    message: "Loading...",
+    status: ''
+}
 
-const meReducer = (state = initialState, action) => {
+const meReducer = (state = initialState, action :MeAction) :MeState => {
     switch(action.type){
         case ME :
             return{
@@ -15,4 +18,4 @@ const meReducer = (state = initialState, action) => {
     }
 }
 
-export {meReducer}
+export default meReducer

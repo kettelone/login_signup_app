@@ -1,26 +1,31 @@
-import { useState } from "react"
+/* eslint-disable react/jsx-no-bind */
+import React , {useState} from "react"
 import {Link} from "react-router-dom"
-import {useSelector, useDispatch} from "react-redux"
+import {useDispatch} from "react-redux"
+import useTypedSelector from "../hooks/useTypedSelector"
 import {handleSignUp} from "../actions/index"
 import {SIGN_UP} from "../reducers/types"
 import {InputForm,SubmitButton} from "./input"
 
-const SignUp = () =>{
+const SignUp :React.FC = () =>{
 
     const [email, setEmail] = useState('')  
     const [password, setPassword] = useState('')
-    const message  = useSelector(state => state.SignUp.message)
+    const message  = useTypedSelector(state => state.SignUp.message)
     const dispatch  = useDispatch()
 
-    function handleChange(e){
+    function handleChange(e : any){
         const {name, value} = e.target
-        name === "email" ? setEmail(value)
-                         : setPassword(value)
+        if(name === 'email'){
+            setEmail(value)
+          }else{
+            setPassword(value)
+          }
     }
 
-    function handleSubmit(e){
+    function handleSubmit(e :any){
         e.preventDefault()
-        handleSignUp(email, password).then((response) => {
+        handleSignUp(email, password).then((response:any) => {
             dispatch({type: SIGN_UP, payload: response.data})
          })
         
