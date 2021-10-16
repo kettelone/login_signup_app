@@ -1,5 +1,5 @@
-/* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+
 import React from 'react';
 
 interface InputProps{
@@ -30,7 +30,7 @@ const InputForm = ({type, name, placeholder, handleChange}:InputProps) => (
 
 const SubmitButton = ({handleSubmit, name}:SubmitProps) => (
   <div className="row">
-    <button
+    <button type="submit"
       onClick={handleSubmit}
     >
       {name}
