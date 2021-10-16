@@ -14,7 +14,7 @@ const SignUp :React.FC = () =>{
     const message  = useTypedSelector(state => state.SignUp.message)
     const dispatch  = useDispatch()
 
-    function handleChange(e : any){
+    function handleChange(e : React.ChangeEvent<HTMLInputElement>){
         const {name, value} = e.target
         if(name === 'email'){
             setEmail(value)

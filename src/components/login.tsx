@@ -14,7 +14,7 @@ const Login :React.FC = () => {
   const {isAuth, message} =  useTypedSelector((state) => state.Login)
   const dispatch = useDispatch();
 
-  function handleChange(e:any) {
+  function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     if(name === 'email'){
       setEmail(value)
