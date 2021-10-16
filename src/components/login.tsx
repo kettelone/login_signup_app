@@ -23,7 +23,7 @@ const Login :React.FC = () => {
     }
   }
 
-  function handleSubmit(e:React.MouseEvent) {
+  function handleSubmit(e:React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     handleLogin(email, password).then((response:any) => {
       dispatch({ type: LOG_IN, payload: response.data });

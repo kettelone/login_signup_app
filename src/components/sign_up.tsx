@@ -23,7 +23,7 @@ const SignUp :React.FC = () =>{
           }
     }
 
-    function handleSubmit(e :React.MouseEvent){
+    function handleSubmit(e :React.MouseEvent<HTMLButtonElement>){
         e.preventDefault()
         handleSignUp(email, password).then((response:any) => {
             dispatch({type: SIGN_UP, payload: response.data})
